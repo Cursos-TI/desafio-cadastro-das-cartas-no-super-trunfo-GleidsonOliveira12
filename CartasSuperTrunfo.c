@@ -1,7 +1,7 @@
 #include <stdio.h>  // Inclui a biblioteca padrão de entrada e saída
 
 int main() {
-    printf("Desafio Super trunfo AVENTUREIRO\n");
+    printf("Desafio Super trunfo AVENTUREIRO MESTRE\n");
     printf("Novo commit\n");
 
     // Declaração de variáveis para armazenar os dados da carta 1 e carta 2
@@ -14,6 +14,7 @@ int main() {
     int pontosturisticos1, pontosturisticos2;            // Número de pontos turísticos
     float densidade1, densidade2;                        // Densidade populacional (habitantes por km²)
     float pibpercapita1, pibpercapita2;                  // PIB per capita (PIB dividido pela população)
+    float superpoder1, superpoder2;                      // SOMA DOS ATRIBUTOS
 
     // ======= Entrada de dados para a CARTA 1 =======
     printf("Digite o estado: \n");
@@ -63,8 +64,13 @@ int main() {
     densidade1 = populacao1 / area1;
     densidade2 = populacao2 / area2;
 
-    pibpercapita1 = PIB1 / populacao1;
-    pibpercapita2 = PIB2 / populacao2;
+    pibpercapita1 = PIB1 / (float)populacao1;
+    pibpercapita2 = PIB2 / (float)populacao2;
+
+    //Calculos super poderes: soma de todos os atributos numericos, inlcuindo o inverso da densidade;
+
+    superpoder1 = populacao1 + area1 + PIB1 + pontosturisticos1 + pibpercapita1 + (float)1 / densidade1;
+    superpoder2 = populacao2 + area2 + PIB2 + pontosturisticos2 + pibpercapita2 + (float)1 / densidade2;
 
     // ======= Impressão dos dados da CARTA 1 =======
     printf("\n==== CARTA 1 ====\n");
@@ -85,5 +91,25 @@ int main() {
     printf("Densidade populacional: %.2f\n", densidade2);
     printf("PIB per capita: %.2f\n", pibpercapita2);
 
-    return 0;  // Finaliza o programa
+     // Comparações
+    int venceuPopulacao = populacao1 > populacao2;
+    int venceuArea = area1 > area2;
+    int venceuPIB = PIB1 > PIB2;
+    int venceuPontosTuristicos = pontosturisticos1 > pontosturisticos2;
+    int venceuDensidade = densidade1 < densidade2; // MENOR vence
+    int venceuPIBPerCapita = pibpercapita1 > pibpercapita2;
+    int venceuSuperPoder = superpoder1 > superpoder2;
+
+    // Saída de resultados
+    printf("\n--- Comparação de Cartas ---\n");
+    printf("População: Carta 1 venceu (%d)\n", venceuPopulacao);
+    printf("Área: Carta 1 venceu (%d)\n", venceuArea);
+    printf("PIB: Carta 1 venceu (%d)\n", venceuPIB);
+    printf("Pontos Turísticos: Carta 1 venceu (%d)\n", venceuPontosTuristicos);
+    printf("Densidade Populacional: Carta 1 venceu (%d)\n", venceuDensidade);
+    printf("PIB per Capita: Carta 1 venceu (%d)\n", venceuPIBPerCapita);
+    printf("Super Poder: Carta 1 venceu (%d)\n", venceuSuperPoder);
+
+    return 0; // Finaliza o programa
+
 }
